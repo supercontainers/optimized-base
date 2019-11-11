@@ -1,0 +1,7 @@
+# Add Spack shell
+source /opt/spack/share/spack/setup-env.sh
+
+# Add the view directories to paths
+export PATH=/opt/spack/view/bin:$PATH
+export LD_LIBRARY_PATH=/opt/spack/view/lib:$LD_LIBRARY_PATH
+export CPATH=/opt/spack/view/include:$CPATH
