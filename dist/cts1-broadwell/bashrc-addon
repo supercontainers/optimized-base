@@ -1,5 +1,6 @@
 # Add Spack shell
 source /opt/spack/share/spack/setup-env.sh
+spack env activate /opt/spack/var/spack/environments/mpich-env
 
 # Add the view directories to paths
 export PATH=/opt/spack/view/bin:$PATH

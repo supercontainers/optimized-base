@@ -1,8 +1,13 @@
 spack:
   specs:
-  - matrix:
-    - - mpich
-    - ["arch=broadwell"]
+  - file
+  - findutils
+  - mpich
+  - nano
+  - vim
   view:
     default-view:
       root: /opt/spack/view
+  packages:
+    all:
+      target: [broadwell]
