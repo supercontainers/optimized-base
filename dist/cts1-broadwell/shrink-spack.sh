@@ -11,7 +11,7 @@ du -sh /opt/spack/opt/spack
 echo "Removing static libraries..."
 find /opt/spack/opt/spack/*/*/ -type f -name \*.a | xargs rm -f
 
-# Does not work atm, need a more fine-grained way or this should be dropped entirely
+# Breaks Spack databse atm, need a more fine-grained way or this should be dropped entirely.
 #echo "Removing /.spack..."
 #find /opt/spack/opt/spack/*/*/ -name .spack -type d | xargs rm -rfo "Removing /share..."
 

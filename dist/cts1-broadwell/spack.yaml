@@ -1,10 +1,16 @@
 spack:
   specs:
+  - bzip2
   - file
   - findutils
+  - gmake
+  - gzip
   - mpich
   - nano
+  - patch
+  - tar
   - vim
+  - xz
   view:
     default-view:
       root: /opt/spack/view

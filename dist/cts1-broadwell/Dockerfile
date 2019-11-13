@@ -1,31 +1,32 @@
-ARG SPACK_CHECKOUT=76a042134d8d969cfe967e033d239cd1c38af5ed
+ARG SPACK_CHECKOUT=086079d47580079a
 ARG HTTP_PROXY
 ARG HTTPS_PROXY
+ARG FORCE_UNSAFE_CONFIGURE=1
 
-# Required packages
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.1 as base
+# Required packages
 RUN microdnf install \
-      bzip2 \
       gcc \
       gcc-c++ \
       gcc-gfortran \
-      gzip \
-      make \
-      patch \
-      python36 \
-      tar \
-      xz
+      python36
 
 # Installing spack
 FROM base as add_spack
-RUN microdnf install git
+# Dependencies required for spack that will be discarded once finished
+RUN microdnf install \
+      bzip2 \
+      git \
+      gzip \
+      make \
+      patch \
+      tar \
+      xz
 RUN git clone https://github.com/sknigh/spack.git -b missing-system-utilities /opt/spack
 RUN (cd /opt/spack; git checkout $SPACK_CHECKOUT)
 COPY spack.yaml /opt/spack/var/spack/environments/mpich-env/
 
 # Configuring CLI to use Spack, then installing MPICH stack
-FROM base as install_mpich
-COPY --from=add_spack /opt/spack /opt/spack
 COPY bashrc-addon /.bashrc-addon
 RUN echo "source /.bashrc-addon" >> ~/.bashrc
 
@@ -40,9 +41,9 @@ COPY shrink-spack.sh /
 RUN /shrink-spack.sh
 
 # Compact the installation history
-FROM base AS compress_spack
-COPY --from=install_mpich /opt/spack /opt/spack
-COPY --from=install_mpich /shrink-spack.sh /
-COPY --from=install_mpich /.bashrc-addon /.bashrc-addon
+FROM base as compress_spack
+COPY --from=add_spack /opt/spack /opt/spack
+COPY --from=add_spack /shrink-spack.sh /
+COPY --from=add_spack /.bashrc-addon /.bashrc-addon
 
 RUN echo "source /.bashrc-addon" >> ~/.bashrc
