@@ -1,4 +1,4 @@
-ARG SPACK_CHECKOUT=086079d47580079a
+ARG SPACK_CHECKOUT=08d0267c9a6877b65208d732f0d5319b0fcc0bd7
 ARG HTTP_PROXY
 ARG HTTPS_PROXY
 ARG FORCE_UNSAFE_CONFIGURE=1
@@ -22,7 +22,7 @@ RUN microdnf install \
       patch \
       tar \
       xz
-RUN git clone https://github.com/sknigh/spack.git -b missing-system-utilities /opt/spack
+RUN git clone https://github.com/spack/spack.git /opt/spack
 RUN (cd /opt/spack; git checkout $SPACK_CHECKOUT)
 COPY spack.yaml /opt/spack/var/spack/environments/mpich-env/
 
@@ -34,6 +34,7 @@ RUN echo "source /.bashrc-addon" >> ~/.bashrc
 RUN ( source /opt/spack/share/spack/setup-env.sh \
       && spack env activate mpich-env \
       && spack -k install \
+      && spack gc -y \
       && spack clean -a )
 
 # Prune installation directory
