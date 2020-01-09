@@ -33,4 +33,5 @@ endif
 
 ###############################################################################
 # Build rules
-cts1-broadwell: ;       ${BUILD_CMD}; ${PUSH_CMD}
+cts1-broadwell: ;           ${BUILD_CMD}; ${PUSH_CMD}
+cts1-broadwell-gpu: ;       ${BUILD_CMD}; ${PUSH_CMD}
