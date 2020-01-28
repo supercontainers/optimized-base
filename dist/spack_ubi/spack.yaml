@@ -1,0 +1,14 @@
+spack:
+  config:
+    install_tree: /opt/software
+    install_missing_compilers: true
+  packages:
+    all:
+      target: [x86_64]
+      compiler: [gcc@7.2.0]
+  specs:
+  - szip
+  - nalu%gcc@7.2.0
+  view:
+    default:
+      root: /opt/view

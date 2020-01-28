@@ -1,4 +1,7 @@
 ARG SPACK_CHECKOUT=tags/v0.13.1
+ARG HTTP_PROXY=http://wwwproxy.sandia.gov:80
+ARG HTTPS_PROXY=http://wwwproxy.sandia.gov:80
+
 
 # Required packages
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.1 as base
