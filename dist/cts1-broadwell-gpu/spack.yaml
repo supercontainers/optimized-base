@@ -1,6 +1,7 @@
 spack:
   specs:
   - bzip2
+  - cuda@10.2.89
   - file
   - findutils
   - gmake

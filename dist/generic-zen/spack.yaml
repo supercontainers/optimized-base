@@ -16,4 +16,4 @@ spack:
       root: /opt/spack/view
   packages:
     all:
-      target: [broadwell]
+      target: [zen]
