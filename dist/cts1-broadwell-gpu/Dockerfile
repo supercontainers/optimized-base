@@ -1,6 +1,6 @@
 ARG SPACK_CHECKOUT=08d0267c9a6877b65208d732f0d5319b0fcc0bd7
-ARG HTTP_PROXY
-ARG HTTPS_PROXY
+ARG HTTP_PROXY=http://wwwproxy.sandia.gov:80
+ARG HTTPS_PROXY=http://wwwproxy.sandia.gov:80
 ARG FORCE_UNSAFE_CONFIGURE=1
 
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.1 as base

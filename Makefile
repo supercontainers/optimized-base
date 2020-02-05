@@ -1,8 +1,8 @@
 # User-defined variables
 REPO_ADDR=
 PUSH_CMD=
-HTTP_PROXY=
-HTTPS_PROXY=
+HTTP_PROXY=http://wwwproxy.sandia.gov:80
+HTTPS_PROXY=http://wwwproxy.sandia.gov:80
 DATE=$(shell date -u +"%Y-%m-%d")
 
 # Find Podman (preferred) or Docker
